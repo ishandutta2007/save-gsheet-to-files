@@ -80,6 +80,8 @@ def main():
                 continue
                 
             safe_filename = sanitize_filename(raw_filename)
+            words = [w.capitalize() for w in re.split(r'[-_\s]+', safe_filename) if w]
+            safe_filename = "-".join(words)
             file_path = os.path.join(OUTPUT_DIR, f"{safe_filename}.txt")
             
             # Concatenate all available columns in this specific row
