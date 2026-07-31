@@ -91,7 +91,9 @@ def main():
             safe_filename = "-".join(words)
             file_path = os.path.join(OUTPUT_DIR, f"{safe_filename}.txt")
             github_name = f"Awesome_{safe_filename}".replace("_", "-")
-            github_desc = f"Top {safe_filename}".replace("-", " ").replace("_", " ").strip()
+            github_desc = (
+                f"Top {safe_filename}".replace("-", " ").replace("_", " ").strip()
+            )
 
             # Concatenate all available columns in this specific row
             concatenated_data = DELIMITER.join(str(cell).strip() for cell in row)
