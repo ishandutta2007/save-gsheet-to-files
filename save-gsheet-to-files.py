@@ -77,8 +77,8 @@ def main():
 
     # 4. Process Rows (Iterate starting from 1 if skipping a header row: rows[1:])
     for index, row in enumerate(rows):
-        if index > 2:
-            break
+        if index == 0:
+            continue
         if len(row) >= 3:
             raw_filename = row[2]
 
