@@ -90,9 +90,13 @@ def main():
             words = [w.capitalize() for w in re.split(r"[-_\s]+", safe_filename) if w]
             safe_filename = "-".join(words)
             file_path = os.path.join(OUTPUT_DIR, f"{safe_filename}.txt")
-            github_name = f"Awesome_{safe_filename}".replace("_", "-")
+            file_ignore_path = os.path.join(OUTPUT_DIR, f"_{safe_filename}.txt")
+            if os.path.exists(file_ignore_path):
+                print("file_ignore_path exists:", file_ignore_path)
+                continue
+            github_name = f"$repo_name = 'Awesome_{safe_filename}'".replace("_", "-")
             github_desc = (
-                f"Top {safe_filename}".replace("-", " ").replace("_", " ").strip()
+                f"$repo_desc = 'Top {safe_filename} 🌟 Star if you like it! 🌟'".replace("-", " ").replace("_", " ").strip()
             )
 
             # Concatenate all available columns in this specific row
@@ -108,8 +112,8 @@ def main():
             # Write out to text
             try:
                 with open(file_path, "w", encoding="utf-8") as f:
-                    f.write(github_name + "\n\n\n")
-                    f.write(github_desc + "\n\n\n")
+                    f.write(github_name + "\n")
+                    f.write(github_desc + "\n\n")
                     f.write(concatenated_data)
                 print(f"Saved: {file_path}")
             except IOError as e:
